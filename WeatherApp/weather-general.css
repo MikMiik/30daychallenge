@@ -1,0 +1,24 @@
+html{
+    box-sizing: border-box;
+    font-size: 6.25%;
+    line-height: 16rem;
+    font-family: "Poppins", sans-serif;
+  }
+  body {
+    color: #333; 
+    font-size: 16rem;
+    background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  *{
+    box-sizing: inherit;
+    padding: 0;
+    margin: 0;
+    outline: none;
+  }
+  :root {
+    --primary-color: rgb(226, 110, 112);
+  }
