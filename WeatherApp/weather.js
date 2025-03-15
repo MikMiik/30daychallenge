@@ -1,45 +1,48 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
-const container = $('.container');
-const centre = $('.centre');
-const centreDetails = $('.centre .weather-details');
-const footer = $('.footer');
 const searchInput = $('.search-input');
 const searchBtn = $('.search-box button');
-const temperature = $('.temperature');
-const describe = $('.describe');
-const weatherImg = $('.weather-img img');
-const humidityData = $('.humidity-data');
-const windData = $('.wind-data');
 
 async function fetchData(city) {
     try {
         const responseCoordinates = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}}&limit=1&appid=979322e8a48b71c2eb169a5af81da036`);
         const coordinatesData = await responseCoordinates.json();
-        if (coordinatesData.length == 0) return weatherData = '';
+        if (coordinatesData.length == 0) return {weatherData: '', dateData:''};
         const latitude = coordinatesData[0].lat;
         const longtitude = coordinatesData[0].lon;
+        const responseDate = await fetch(`http://api.timezonedb.com/v2.1/get-time-zone?key=DZJO85QQM73D&format=json&by=position&lat=${latitude}&lng=${longtitude}`);
+        const dateData = await responseDate.json();
         const responseWeatherData = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longtitude}&appid=979322e8a48b71c2eb169a5af81da036`);
         const weatherData = await responseWeatherData.json();
-        return weatherData;
+        return {weatherData, dateData};
     } catch (error) {
         console.log('Lỗi')
     }
 }
-
-searchBtn.addEventListener('click', () => {
+function renderWeather(searchInput) {
     const city = searchInput.value.trim();
+
     if (city == '') return;
-    fetchData(city).then((weatherData) =>  {
-        console.log(weatherData)
-        if (!weatherData) {
+
+    fetchData(city).then((data) =>  {
+        const { weatherData } = data;
+        const { dateData } = data;
+        const weatherImg = $('.weather-img img');
+        const container = $('.container');
+        const centre = $('.centre');
+        const time = $('.time');
+        const footer = $('.footer');
+        const centreDetails = $('.centre .weather-details');
+        if (!weatherData || !dateData) {
             weatherImg.src = 'notfound.png';
             container.style.height = '400px';
             centre.classList.add('fade-in');
             footer.classList.remove('fade-in');
             centreDetails.innerHTML = '<p>Oops! Invalid location :/</p>'
+            time.innerHTML = '';
             return;
         }
+
         switch ( weatherData.weather[0].main) {
             case 'Clouds':
                 weatherImg.src = 'cloud.png';
@@ -70,10 +73,18 @@ searchBtn.addEventListener('click', () => {
 
             default: weatherImg.src = '';
         }
-        container.style.height = '540px';
+
+        container.style.minHeight = '580px';
         centre.classList.add('fade-in');
         footer.classList.add('fade-in');
-
+        const humidityData = $('.humidity-data');
+        const windData = $('.wind-data');
+        const splitTime = dateData.formatted.split(' ');
+        time.innerHTML = `
+            <p>${splitTime[0]}</p>
+            <br>
+            <p>${splitTime[1]}</p>
+        `;
         centreDetails.innerHTML = 
         `<p class="temperature">${parseInt(weatherData.main.temp) - 273}°C</p>
         <p class="describe">${weatherData.weather[0].main}</p>
@@ -81,4 +92,13 @@ searchBtn.addEventListener('click', () => {
         humidityData.innerText = `${weatherData.main.humidity}%`;
         windData.innerText = `${weatherData.wind.speed}Km/h`;
     });
+}
+
+searchBtn.addEventListener('click', () => {
+    renderWeather(searchInput);
+})
+searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        renderWeather(searchInput);
+    }
 })
