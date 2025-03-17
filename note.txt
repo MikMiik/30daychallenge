@@ -1,0 +1,14 @@
+1. 
+    <div class="slide" data-active></div>
+    Có thể gọi data-active trong css bằng cách .slide[data-active]
+2.
+    <script> viết ở phần head có thể khiến script load trước khi DOM được tạo -> lỗi
+    khắc phục -> thêm attribute defer hoặc để script ở cuối body/footer
+3. 
+    inset thay thế cho top right left bottom trong position
+4. 
+    chuyển nodelist sang array ko dùng array.from, dùng Spread Operator 
+    const buttons = [...document.querySelectorAll("button")];
+5.
+    .slide > img : nhắm vào con trực tiếp
+    .slide .img : nhắm vào con nói chung
