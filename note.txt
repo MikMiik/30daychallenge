@@ -12,3 +12,10 @@
 5.
     .slide > img : nhắm vào con trực tiếp
     .slide .img : nhắm vào con nói chung
+6. 
+    appendChild() không sao chép phần tử mà di chuyển nó. Nếu phần tử đã tồn tại trong DOM, nó sẽ bị xóa khỏi vị trí cũ trước khi được thêm vào vị trí mới.
+7.
+    Phương thức cloneNode(deep) giúp sao chép một phần tử DOM.
+
+    Nếu deep là true, nó sẽ sao chép cả phần tử con.
+    Nếu deep là false, nó chỉ sao chép phần tử mà không sao chép các con của nó.
