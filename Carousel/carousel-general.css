@@ -7,7 +7,7 @@ html{
 body {
   color: #333; 
   font-size: 16rem;
-  background-color: #dadada;
+  background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
   min-height: 100vh;
   display: flex;
   align-items: center;

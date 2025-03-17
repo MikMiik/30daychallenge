@@ -27,14 +27,16 @@ const imgsData = [{
   src: 'img8.jpg'
 }, {
   index: '9',
-  src: 'img1.jpg'
+  src: 'img9.jpg'
+}, {
+  index: '10',
+  src: 'img10.jpg'
 }]
 
 const wrapper = $('.wrapper')
 const gallery = $('.gallery')
 let html = '';
 
-// Dom imgs in wrapper
 imgsData.forEach((imgData) => {
   html +=`
     <div class="image" data-imgurl= "${imgData.src}">
@@ -44,9 +46,8 @@ imgsData.forEach((imgData) => {
 })
 wrapper.innerHTML = html;
 
-// Query Dom
-const imgs = $$('.image');
-const imgsArray = Array.from(imgs);
+
+const imgs = [...$$('.image')];
 const galleryImg = $('.gallery__img');
 const firstImg = wrapper.querySelector(".image:first-child");
 const lastImg = wrapper.querySelector(".image:last-child");
@@ -77,12 +78,31 @@ function showGallery(gallery) {
 }
 
 // Click img in wrapper to show gallery
-imgsArray.forEach((img, index) => {
+imgs.forEach((img, index) => {
   img.addEventListener('click', () => {
     const { imgurl } = img.dataset;
     galleryImg.innerHTML = `
       <img src="${imgurl}" data-index = "${index + 1}" alt="">
     `
+    const carousel = $('.carousel');
+    let carouselHTML ='';
+    imgsData.forEach((imgData, indexCarousel) => {
+      if (indexCarousel == index) {
+        carouselHTML +=`
+          <div class="img active" >
+            <img src="${imgData.src}" alt="">
+          </div>  
+        `
+        return;
+      }
+      carouselHTML +=`
+        <div class="img" data-carousel-index = "${indexCarousel + 1}">
+          <img src="${imgData.src}" alt="">
+        </div>  
+      `
+    })
+    carousel.innerHTML = carouselHTML;
+
     showGallery(gallery)
     if (img === firstImg) {
       HideControl(controlPre);
@@ -97,7 +117,7 @@ imgsArray.forEach((img, index) => {
 // Hide gallery when click X
 galleryToggle(btnClose)
 
-// Hide galler when click outside img
+// Hide gallery when click outside img
 gallery.addEventListener('click', (e) => {
   if(e.target === gallery) {
     gallery.classList.toggle('hide');
