@@ -68,19 +68,22 @@
   --carousel-width: 90%;
   position: absolute;
   height: 100px;
-  width: var(--carousel-width);
-  right: calc((100% - var(--carousel-width))/2);
+  width: max-content;
+  left: auto;
   bottom: 20px;
   margin: auto;
   display: flex;
   justify-content: center;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 .carousel .image{
-  height: 100%;
-  width: 100px;
-  padding: 6px;
+  height: 80px;
+  width: 80px;
+  margin: 10px;
   cursor: pointer;
   opacity: 0.4;
+  flex: 0 0 auto;
 }
 .carousel .image.active{
   outline: 4px outset #a1c4fd;

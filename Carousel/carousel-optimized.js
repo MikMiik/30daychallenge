@@ -1,37 +1,7 @@
+import { imgsData } from "./carousel-data.js";
+
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
-
-const imgsData = [{
-  index: '1',
-  src: 'img1.jpg'
-}, {
-  index: '2',
-  src: 'img2.jpg'
-}, {
-  index: '3',
-  src: 'img3.jpg'
-}, {
-  index: '4',
-  src: 'img4.jpg'
-}, {
-  index: '5',
-  src: 'img5.jpg'
-}, {
-  index: '6',
-  src: 'img6.jpg'
-}, {
-  index: '7',
-  src: 'img7.jpg'
-}, {
-  index: '8',
-  src: 'img8.jpg'
-}, {
-  index: '9',
-  src: 'img9.jpg'
-}, {
-  index: '10',
-  src: 'img10.jpg'
-}]
 
 const wrapper = $('.wrapper');
 const gallery = $('.gallery');
@@ -42,10 +12,13 @@ const controlPre = $('.control__pre');
 const controlNext = $('.control__next');
 let wrapperHTML = '';
 
+// Create func
 function galleryClose () {
   btnClose.addEventListener('click', () => {
     gallery.classList.add('hide');
-		removeActiveImg()
+	removeActiveImg();
+	UnhideControl(controlPre);
+	UnhideControl(controlNext);
   })
 
 }
@@ -76,9 +49,12 @@ function clickLayerToClose() {
 		if(e.target === gallery) {
 			gallery.classList.add('hide');
 			removeActiveImg();
+			UnhideControl(controlPre);
+			UnhideControl(controlNext);
 		}
 	})
 }
+
 // Add wrapper DOM
 imgsData.forEach((imgData) => {
 	wrapperHTML +=`
@@ -108,8 +84,8 @@ imgs.forEach((img, index) => {
       HideControl(controlNext);
       clickLayerShowControl(controlNext)
     }
-		;[...$$('.carousel img')].forEach((carouselImage) => {	
-			if (carouselImage.src === galleryImg.querySelector('img').src) {
+		;[...$$('.carousel img')].forEach((carouselImage, carouselIndex) => {	
+			if (carouselImage.src === galleryImg.querySelector('img').src && index === carouselIndex) {
 				carouselImage.parentElement.classList.add('active')
 			}
 		});
@@ -143,6 +119,26 @@ controls.forEach((control) => {
 	})
 })
 
+// Carousel Handle
+;[...$$('.carousel .image')].forEach((carouselImage, index) => {
+	carouselImage.addEventListener('click', () => {
+		document.querySelector('.carousel .image.active').classList.remove('active');
+		carouselImage.classList.add('active');
+		galleryImg.innerHTML = `
+			<img src="${carouselImage.querySelector('img').src}" data-index = "${index + 1}" alt="">
+		`;
+		if (index === 0) {
+			HideControl(controlPre);
+			UnhideControl(controlNext);
+		} else if (index === ([...$$('.carousel .image')].length - 1)) {
+			HideControl(controlNext);
+			UnhideControl(controlPre)
+		} else {
+			UnhideControl(controlNext);
+			UnhideControl(controlPre);
+		}
+	})
+})
 
 
 
