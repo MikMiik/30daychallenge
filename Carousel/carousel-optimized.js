@@ -88,8 +88,6 @@ imgs.forEach((img, index) => {
 			if (carouselImage.src === galleryImg.querySelector('img').src && index === carouselIndex) {
 				carouselImage.parentElement.classList.add('active')
 			}
-
-			
 		});
 		galleryClose();
 		clickLayerToClose()
@@ -150,7 +148,6 @@ controls.forEach((control) => {
 		// console.log(mutations);
 		if (mutations[0].target === document.querySelector('.carousel .image.active')) {
 			const activeImg = document.querySelector('.carousel .image.active');
-			console.log(activeImg)
 			const centreScreen =  Math.round((document.documentElement.clientWidth)/2);
 			if (activeImg) {
 				carousel.style.transform = `translateX(0px)`; 
@@ -170,7 +167,6 @@ controls.forEach((control) => {
 				const activeImgCdn = activeImg.getBoundingClientRect();
 				const centreImg = Math.round((activeImgCdn.left + activeImgCdn.right)/2);
 				const space = centreImg - centreScreen;
-				console.log(space)
 				carousel.style.transform = `translateX(${-space}px)`; 
 			} 
 		} 
@@ -178,3 +174,25 @@ controls.forEach((control) => {
 	observer.observe(carouselImage, { attributes : true, attributeOldValue: true, attributeFilter: ['class']})
 })
 
+// ScrollCarousel
+let isScrolling = false;
+carousel.addEventListener('wheel', (e) => {
+	e.preventDefault();
+	if (isScrolling) return;
+		isScrolling = true;
+		const activeImg = document.querySelector('.carousel .image.active');
+		if (e.deltaY < 0 && activeImg.nextElementSibling) {
+			const nextImg = activeImg.nextElementSibling;
+			activeImg.classList.remove('active');
+			nextImg.classList.add('active');
+			galleryImg.querySelector('img').src = nextImg.dataset.imgurl;
+		} else if (e.deltaY > 0 && activeImg.previousElementSibling) {
+				const preImg = activeImg.previousElementSibling;
+				activeImg.classList.remove('active');
+				preImg.classList.add('active');
+				galleryImg.querySelector('img').src = preImg.dataset.imgurl;
+		}
+	setTimeout(() => {
+		isScrolling = false;
+	},50)
+})
