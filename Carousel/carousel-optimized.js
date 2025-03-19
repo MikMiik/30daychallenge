@@ -77,17 +77,19 @@ imgs.forEach((img, index) => {
 		`;
 		const firstImg = wrapper.querySelector(".image:first-child");
 		const lastImg = wrapper.querySelector(".image:last-child");
-    if (img === firstImg) {
-      HideControl(controlPre);
-      clickLayerShowControl(controlPre)
-    } else if (img === lastImg) {
-      HideControl(controlNext);
-      clickLayerShowControl(controlNext)
-    }
+		if (img === firstImg) {
+		HideControl(controlPre);
+		clickLayerShowControl(controlPre)
+		} else if (img === lastImg) {
+		HideControl(controlNext);
+		clickLayerShowControl(controlNext)
+		}
 		;[...$$('.carousel img')].forEach((carouselImage, carouselIndex) => {	
 			if (carouselImage.src === galleryImg.querySelector('img').src && index === carouselIndex) {
 				carouselImage.parentElement.classList.add('active')
 			}
+
+			
 		});
 		galleryClose();
 		clickLayerToClose()
@@ -121,8 +123,10 @@ controls.forEach((control) => {
 
 // Carousel Handle
 ;[...$$('.carousel .image')].forEach((carouselImage, index) => {
+	// Active Img
 	carouselImage.addEventListener('click', () => {
-		document.querySelector('.carousel .image.active').classList.remove('active');
+		const activeImg = document.querySelector('.carousel .image.active');
+		activeImg.classList.remove('active');
 		carouselImage.classList.add('active');
 		galleryImg.innerHTML = `
 			<img src="${carouselImage.querySelector('img').src}" data-index = "${index + 1}" alt="">
@@ -140,6 +144,37 @@ controls.forEach((control) => {
 	})
 })
 
-
-
+// MoveImgToCentre
+;[...$$('.carousel .image')].forEach((carouselImage) => {
+	const observer = new MutationObserver((mutations) => {
+		// console.log(mutations);
+		if (mutations[0].target === document.querySelector('.carousel .image.active')) {
+			const activeImg = document.querySelector('.carousel .image.active');
+			console.log(activeImg)
+			const centreScreen =  Math.round((document.documentElement.clientWidth)/2);
+			if (activeImg) {
+				carousel.style.transform = `translateX(0px)`; 
+				/* 
+				Phải để carousel.style.transform = `translateX(0px)`; ở đầu vì space là khoảng cách centre ảnh-active sau khi đã có 1 ảnh được centre trước đó
+				=> translateX dịch chuyển ảnh bằng khoảng các space so với vị trí đã được căn chỉnh
+				mà translateX là dịch chuyển ảnh bằng khoảng cách space so với vị trí ban đầu 
+				VD: 
+				- lúc ban đầu hay chưa centre
+				Space ảnh 3 và centre: -328
+				Space ảnh 4 và centre: -228
+				- lúc đã centre ảnh 3
+				Space ảnh 3 và centre: 0
+				Space ảnh 4 và centre: 100
+				--> space khác nhau --> đưa về translateX(0px) để thống nhất space ban đầu
+				*/
+				const activeImgCdn = activeImg.getBoundingClientRect();
+				const centreImg = Math.round((activeImgCdn.left + activeImgCdn.right)/2);
+				const space = centreImg - centreScreen;
+				console.log(space)
+				carousel.style.transform = `translateX(${-space}px)`; 
+			} 
+		} 
+	})
+	observer.observe(carouselImage, { attributes : true, attributeOldValue: true, attributeFilter: ['class']})
+})
 

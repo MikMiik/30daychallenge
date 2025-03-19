@@ -19,3 +19,19 @@
 
     Nếu deep là true, nó sẽ sao chép cả phần tử con.
     Nếu deep là false, nó chỉ sao chép phần tử mà không sao chép các con của nó.
+8.
+    getBoundingClientRect()
+    Phương pháp này trả về thông tin về kích thước và vị trí của phần tử so với viewport.
+
+    offsetTop và offsetLeft
+    Lấy vị trí của phần tử so với phần tử cha gần nhất có position: relative;
+9. 
+    flex: <flex-grow> <flex-shrink> <flex-basis>;
+10. 
+    white-space: nowrap; 📝 → Cho văn bản và inline elements, ngăn xuống dòng.
+    flex-wrap: nowrap; 📦 → Cho flexbox, giữ tất cả phần tử con trên cùng một dòng.
+11.
+    requestAnimationFrame() giúp cập nhật animation mượt mà.
+12.
+    window.innerWidth → Nếu bạn muốn tính cả thanh cuộn.
+    document.documentElement.clientWidth → Nếu bạn cần chính xác chiều rộng nội dung hiển thị.

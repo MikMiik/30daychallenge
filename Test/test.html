@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Image Gallery</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        img {
+            max-width: 500px;
+            transition: opacity 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <img id="image" src="img1.jpg" alt="Gallery Image">
+
+    <script>
+        const images = ["img1.jpg", "img2.jpg", "img3.jpg", "img4.jpg"];
+        let currentIndex = 0;
+        let isScrolling = false;
+
+        document.addEventListener("wheel", (event) => {
+            if (isScrolling) return; // Chặn cuộn liên tục
+            isScrolling = true;
+
+            if (event.deltaY > 0) {
+                // Cuộn xuống
+                currentIndex = (currentIndex + 1) % images.length;
+            } else {
+                // Cuộn lên
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+            }
+
+            document.getElementById("image").src = images[currentIndex];
+
+            setTimeout(() => {
+                isScrolling = false;
+            }, 500); // Chặn cuộn trong 500ms
+        });
+    </script>
+</body>
+</html>
