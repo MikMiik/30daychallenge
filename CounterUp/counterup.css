@@ -1,0 +1,23 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.box{
+    background-color: #6b38b6;
+    min-height: 104px;
+    min-width: 134px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    color: white;
+    margin: 0 20px;
+    padding: 20px;
+    text-align: center;
+}
+.title{
+    margin-bottom: 20px;
+}
+.number{
+    font-size: 24rem;
+    font-weight: 600;
+}

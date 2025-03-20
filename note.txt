@@ -35,3 +35,6 @@
 12.
     window.innerWidth → Nếu bạn muốn tính cả thanh cuộn.
     document.documentElement.clientWidth → Nếu bạn cần chính xác chiều rộng nội dung hiển thị.
+13. 
+    screen.height : chiều cao toàn màn hình
+    window.innerHeight : chiều cao của trang trình duyệt
