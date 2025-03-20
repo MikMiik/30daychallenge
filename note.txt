@@ -38,3 +38,13 @@
 13. 
     screen.height : chiều cao toàn màn hình
     window.innerHeight : chiều cao của trang trình duyệt
+14. 
+    các attribute:
+    draggable : kéo thả phần tử
+    contenteditable : có thể chỉnh sửa nội dung phần tử
+    spellcheck : kiểm tra chính ta trên input hoặc nội dung có thể chỉnh sửa
+    hidden : ẩn phần tử
+    autofocus : tự động focus vào input khi trang đang tải
+    tabindex : điều khiển thứ tự focus khi nhấn tab
+    inputmode : gợi ý kiểu bàn phím phù hợp trên mobile
+    download(dùng cho <a>) : yêu cầu trình duyệt tải xuống thay vì mở link
