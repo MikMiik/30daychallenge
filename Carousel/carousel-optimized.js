@@ -148,7 +148,7 @@ controls.forEach((control) => {
 		// console.log(mutations);
 		if (mutations[0].target === document.querySelector('.carousel .image.active')) {
 			const activeImg = document.querySelector('.carousel .image.active');
-			const centreScreen =  Math.round((document.documentElement.clientWidth)/2);
+			const centreScreen =  Math.round((document.documentElement.clientWidth)/2);	
 			if (activeImg) {
 				carousel.style.transform = `translateX(0px)`; 
 				/* 
@@ -169,7 +169,7 @@ controls.forEach((control) => {
 				const space = centreImg - centreScreen;
 				carousel.style.transform = `translateX(${-space}px)`; 
 			} 
-		} 
+		}
 	})
 	observer.observe(carouselImage, { attributes : true, attributeOldValue: true, attributeFilter: ['class']})
 })
