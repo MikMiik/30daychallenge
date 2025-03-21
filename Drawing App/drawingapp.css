@@ -1,0 +1,51 @@
+nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgb(19, 88, 131);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    min-height: 40px;
+    padding: 10px;
+}
+button{
+    width: 36px;
+    height: 36px;
+    margin: 0 5px;
+    border: none;
+    cursor: pointer;
+    background-color: white;
+}
+.nav-right{
+    display: flex;
+    align-items: center;
+}
+.save{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+    background-color: white;
+    width: 36px;
+    height: 36px;
+    color: black;
+    margin: 0 5px;
+    border: none;
+    cursor: pointer;
+}
+.color{
+    width: 36px;
+    height: 36px;
+    border: none;
+    vertical-align: middle;
+    cursor: pointer;
+}
+canvas{
+    border: 1px solid #333;
+    background-color: white;
+}
+.eraser.active {
+    background-color: #33333341;
+}

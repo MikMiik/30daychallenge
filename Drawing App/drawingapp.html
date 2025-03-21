@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drawing App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="drawingapp.css">
+    <link rel="stylesheet" href="drawingapp-general.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-left">
+            <input type="color" class="color">
+            <button class="eraser">
+                <i class="fa-solid fa-eraser"></i>
+            </button>
+            <button class="decrease" control-size>
+                -
+            </button>
+            <button class="size">
+                10
+            </button>
+            <button class="increase" control-size>
+                +
+            </button>
+        </div>
+        <div class="nav-right">
+            <a class="save">
+                <i class="fa-solid fa-floppy-disk"></i>
+            </a>
+            <button class="delete">
+                <i class="fa-solid fa-trash"></i>
+            </button>
+        </div>
+    </nav>
+    <canvas width = "800px" height = "600px"></canvas>
+    <script src="drawingapp.js"></script>
+</body>
+</html>
