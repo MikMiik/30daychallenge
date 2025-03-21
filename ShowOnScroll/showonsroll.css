@@ -1,0 +1,84 @@
+#home{
+    height: 100vh;
+    background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+    position: relative;
+}
+.home-content{
+    width: 400px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 20px;
+    text-align: justify;
+    color: white;
+}
+#home h1{
+    margin-bottom: 20px;
+}
+#about {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box-about, .box-member{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: justify;
+    width: 400px;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    margin: 0 20px;
+}
+#team {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgb(226, 110, 112);
+}
+.box-member{
+    width: 200px;
+    background-color: #c2e9fb;
+    color: #333;
+}
+
+
+@keyframes slideIn {
+    0% {
+        left: -420px;
+    }
+    100% {
+        left: 20px;
+    }
+}
+
+@keyframes fromLeft {
+    0% {
+        transform: translateX(-200%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+@keyframes fromRight {
+    0% {
+        transform: translateX(200%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+@keyframes fadeIn {
+    0%{
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    100%{
+        transform: scale(1);
+        opacity: 1;
+    }
+}

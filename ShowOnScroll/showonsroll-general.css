@@ -1,0 +1,19 @@
+html{
+    box-sizing: border-box;
+    font-size: 6.25%;
+    line-height: 16rem;
+    font-family: "Roboto", system-ui; /* optional */
+}
+body {
+    color: #333; 
+    font-size: 16rem;
+}
+  
+*{
+    box-sizing: inherit;
+    padding: 0;
+    margin: 0;
+}
+:root {
+    --primary-color: rgb(226, 110, 112);
+}
