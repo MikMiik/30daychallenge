@@ -102,3 +102,15 @@ searchInput.addEventListener('keydown', (e) => {
         renderWeather(searchInput);
     }
 })
+
+const body = $('body');
+const control = $('.control')
+const switchBtn = $('#switch');
+switchBtn.addEventListener('change', () => {
+    if (!body.classList.contains('dark')) {
+        control.style.transform = 'translateX(200%)';
+    } else {
+        control.style.transform = '';
+    }
+    body.classList.toggle('dark');
+})
