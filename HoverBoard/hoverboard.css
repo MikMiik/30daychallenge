@@ -1,0 +1,21 @@
+.container {
+    height: 600px;
+    width: 800px;
+    border: 1px solid black;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: start;
+    gap: 1px;
+}
+.square{
+    background-color: #1d1d1d;
+    height: 40px;
+    width: 40px;
+    margin: 2px;
+    transition: 1s ease;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.square:hover{
+    transition: 0s;
+}

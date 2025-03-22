@@ -59,3 +59,11 @@
         Trả về một danh sách các DOMRect (DOMRectList), mỗi phần tử trong danh sách thể hiện một hộp chữ nhật tương ứng với các phần của phần tử được hiển thị trên trang.
         Nếu phần tử bị ngắt dòng, nó sẽ có nhiều hình chữ nhật.
         Trả về danh sách rỗng nếu phần tử không hiển thị.
+17.
+    ease: Mặc định. Chuyển động nhanh - chậm - nhanh.
+
+    ease-in: Bắt đầu chậm, sau đó nhanh dần.
+
+    ease-out: Bắt đầu nhanh, sau đó chậm dần.
+
+    ease-in-out: Bắt đầu chậm, tăng tốc ở giữa, rồi chậm lại.
